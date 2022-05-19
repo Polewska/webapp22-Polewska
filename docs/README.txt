@@ -1,1 +1,0 @@
-same as for previous task, my every comment in the code starts with "// Katarzyna:"
