@@ -11,9 +11,10 @@ We are in need ofan application for our „Sunny rehabilitation Resort“. We ha
 
 To provide you as the developer with as much information as possible I have created an Excel File with some data. I have listed a few rehabilitation types, all our locations, and a few employees. To protect their privacy I have swich their name and their data births. The sample data is also a lot smaller since the number of our employees currently stands at 42, but since little information will have to be changed anyway and since we are not sure how long development of this app can take it is best that the true data will be added as the last step by our employees.
 Here I provide you with 3 Screenshots from the excel file:
+
 <img src="Rehabilitation.png">
 <img src="Location.png">
-<img src="Employee.png">
+<img src="Employees.png">
 
 
 # The name and the domain of the app
