@@ -28,6 +28,8 @@ your app.
 
 We have used this page https://www.name.com/domain/search to check if the name of our domain would be available and here you can see that 
 the "sunnyRehabResort.com is not yet taken. We want our app to have the same name as the one listed on the picture.
+<img src="sunnyRehabResort.png">
+
 
 
 
