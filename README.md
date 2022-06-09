@@ -14,13 +14,7 @@ there, so before booking make sure to contact our staff and make sure that the l
 
 # Application
 # Why do we need the app
-We are in need of an application for our „Sunny rehabilitation Resort“. We have noticed that managing on the go seems quite impossible for us.
-Since we aim to grow our company, we attend many events to promote our resort. However since we have gained our 2nd and 3rd location the viewing
-of the different rehabilitation types, as well as our offers at different locations, has been very difficult. In the past we have keept everything
-in a paper form but with multiple resort with different sets of emplyees it started to be to time consuming and it is not easy to keep every center 
-at the same level based on their availabe information. Therefore we ask you to develop an app for us that would help us manage our locations, 
-workers, and rehabilitation offers. We want our emplyees to be able to acess those informations at any point and at any location just by using 
-your app.
+We are in need ofan application for our „Sunny rehabilitation Resort“. We have noticed thatmanaging on the go seems quite impossible for us. Since we aim to grow ourcompany, we attend many events to promote our resort. However gaining our 2ndand 3rd location has caused problems when viewing the different rehabilitationtypes, as well as our offers at different locations. In the past, we have kept everything in a paper form but with multiple resorts and different sets ofemployees it has started to be too time-consuming and it is not easy to keep everycenter at the same level based on their available information. Therefore we askyou to develop an app for us that would help us manage our locations, workers,and rehabilitation offers. We want our employees to be able to access that information at any point and at any location just by using it. The goal is so to have 3 databases:  one for locations, one for employees, and one for the rehabilitation types that we offer. Our employees should be able to view the information about any location or rehabilitation offers to be able then to provide the client with up to date information. Our managers should be able to hire new employees, to view the details of the ones that we have to the be able either to send them on courses in order to gain more skills and expand our offer but also to move them between resorts. 
 
 # The name and the domain of the app
 
@@ -36,10 +30,13 @@ the "sunnyRehabResort.com is not yet taken. We want our app to have the same nam
 
 The goal for this app would be to allow our workers to:
 -	View the location information: city, workers assigned to this location, rehabilitation types available at this resort. 
--	View the list of rehabilitation types that we offer: name 
--	Add a new employee to the employee database: Employee Id, legal name, set of skills = rehabilitation types that they support.
--	Update an existing employee data in case they acquire a new set of skill or change their name
--	Remove an employee if needed
 -	add a new location when our company will grow
--	assign a new crew to a location or add or remove a single emplyee from the cast
--	
+-	assign a new crew to a location or add or remove a single employee from the cast therefore also change the rehabilitation types at the resort accordingly.
+-	View the list of rehabilitation types that we offer: names of each procedure, next to each name a list of employees that can do them
+-	Add new rehabilitation types to the database
+-	Remove rehabilitation types from the database 
+-	Add a new employee to the employee database: Employee Id, legal name, set of skills = rehabilitation types that they support.
+-	Update an existing employee data in case they acquire a new set of skills or change their name
+-	Remove an employee from the database if needed
+-	View the list of employess 
+
