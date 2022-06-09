@@ -5,23 +5,21 @@ As the name of our company states, we try to combine rehabilitation with holiday
 Our target demographic is people above the age of 50, however, everyone is welcome to book a stay at our center. We are currently 
 in possession of 4 different resorts but will be looking to expand in the future as our company will grow. These places are small 
 but we pride ourselves on the number of types of rehabilitations that we offer and our skillful employees. Since our resorts are 
-placed in the beautiful: 1. Hooksiel 2. Göhren 3. Bansin 4. Schmallenberg. Our customers can, not only restore, improve or maintain 
+placed in the beautiful: 1. Hooksiel 2. Göhren 3. Bansin. Our customers can, not only restore, improve or maintain 
 their mobility, independence, and physical health but also use the time spent at our resort as a vacation to restore their inner peace 
 and gain more energy for their everyday life. Each center has a different offer of rehabilitation based on the crew of workers stationing 
 there, so before booking make sure to contact our staff and make sure that the location of your choosing has everything that you need. 
-
-# Contact Information
 
 
 
 # Application
 # Why do we need the app
 We are in need of an application for our „Sunny rehabilitation Resort“. We have noticed that managing on the go seems quite impossible for us.
-Since we aim to grow our company, we attend many events to promote our resort. However since we have gained our 3rd and 4th location the viewing
+Since we aim to grow our company, we attend many events to promote our resort. However since we have gained our 2nd and 3rd location the viewing
 of the different rehabilitation types, as well as our offers at different locations, has been very difficult. In the past we have keept everything
-in a paper form but with multiple emplyees and multiple resort it is to time consuming and it is not easy to keep every center at the same level 
-based on their avaiblae informations. Therefore we ask you to develop an app for us that would help us manage our locations, workers, and 
-rehabilitation offers. We want our emplyees to be able to acess those informations at any point and at any location just by using 
+in a paper form but with multiple resort with different sets of emplyees it started to be to time consuming and it is not easy to keep every center 
+at the same level based on their availabe information. Therefore we ask you to develop an app for us that would help us manage our locations, 
+workers, and rehabilitation offers. We want our emplyees to be able to acess those informations at any point and at any location just by using 
 your app.
 
 # The name and the domain of the app
