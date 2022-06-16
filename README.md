@@ -42,3 +42,11 @@ The goal for this app would be to allow our workers to:
 -	View the list of employess 
 
 As the last note, I would like to state that we are a company with little to no background in the IT department, tehrefore if you will find yourself wanting to add or remove something or suggest a different approach we are very happy to listen to your ideas. 
+
+
+# Developer Contribution:
+# Models:
+
+<img src="new_design_model.drawio.png">
+
+<img src="new_OO_model.drawio.png">
