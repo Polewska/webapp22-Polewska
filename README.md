@@ -50,7 +50,9 @@ As the last note, I would like to state that we are a company with little to no 
 <img src="new_design_model.drawio.png">
 
 
-
+<br>
+<br>
+<br>
 
 
 
