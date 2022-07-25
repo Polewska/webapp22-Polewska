@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>JS/Firebase Web App with Validation and Enumeration: Retrieve and List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="favicon.svg"/>
+  <link rel="mask-icon" href="mask-icon.svg" color="#000000"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="stylesheet" href="css/normalize.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <script src="js/v/retrieveAndListAllEmployees.mjs" type="module"></script>
+</head>
+<body>
+<header>
+  <div id="login-management"></div>
+  <div class="wrapper clearfix">
+    <div class="title">
+      <h1>Retrieve and List All Employee Records</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="createEmployee.html">C</a></li>
+        <li><a href="retrieveAndListAllEmployees.html">R</a></li>
+        <li><a href="updateEmployee.html">U</a></li>
+        <li><a href="deleteEmployee.html">D</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrapper clearfix">
+    <a href="index.html">« Back to main menu</a>
+    <hr>
+    <div>
+      <label>Ordered by:
+        <select>
+          <option value="employeeId">Employee ID</option>
+          <option value="firstName">First Name</option>
+          <option value="lastName">Last Name</option>
+          <option value="birthdate">Birthdate</option>
+          <option value="gender">Gender</option>
+        </select>
+      </label>
+    </div>
+    <progress hidden="hidden" max="100">%</progress>
+    <table id="employees">
+      <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Birthdate</th>
+
+        <th>Gender</th>
+        <th>Therapy Skills</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <a href="index.html">« Back to main menu</a>
+  </div>
+</main>
+<footer>
+  <div class="foot-content wrapper">
+    Copyright © 2020-2022 Gerd Wagner and Juan-Francisco Reyes. <a href="credits.html">Credits and License</a>
+  </div>
+</footer>
+</body>
+</html>

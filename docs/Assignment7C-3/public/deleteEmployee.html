@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>JS/Firebase Web App with Validation and Enumeration: Delete</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="favicon.svg"/>
+  <link rel="mask-icon" href="mask-icon.svg" color="#000000"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="stylesheet" href="css/normalize.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <script src="js/v/deleteEmployee.mjs" type="module"></script>
+</head>
+<body>
+<header>
+  <div id="modal-window">
+    <div></div>
+  </div>
+  <div id="login-management"></div>
+  <div class="wrapper clearfix">
+    <div class="title">
+      <h1>Delete an employee record</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="createEmployee.html">C</a></li>
+        <li><a href="retrieveAndListAllEmployees.html">R</a></li>
+        <li><a href="updateEmployee.html">U</a></li>
+        <li><a href="deleteEmployee.html">D</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrapper clearfix">
+    <form id="Employee">
+      <div>
+        <label>Select employee:
+          <select name="selectEmployee">
+            <option value=""> ---</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <button type="button" name="commit">Delete</button>
+      </div>
+    </form>
+    <a href="index.html">« Back to main menu</a>
+  </div>
+</main>
+<footer>
+  <div class="foot-content wrapper">
+    Copyright © 2020-2022 Gerd Wagner and Juan-Francisco Reyes. <a href="credits.html">Credits and License</a>
+  </div>
+</footer>
+</body>
+</html>
