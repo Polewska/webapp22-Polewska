@@ -8,7 +8,7 @@
  ***************************************************************/
 import { handleAuthentication } from "./accessControl.mjs";
 import Employee, { GenderEL, TherapyEL} from "../m/Employee.mjs";
-import { fillSelectWithOptions, createChoiceWidget, showProgressBar, hideProgressBar }
+import { createChoiceWidget, showProgressBar, hideProgressBar }
   from "../../lib/util.mjs";
 
 /***************************************************************
@@ -63,7 +63,6 @@ genderFieldsetEl.addEventListener("click", function () {
  Add further event listeners, especially for the create/submit button
  ********************************************************************/
 createButton.addEventListener("click", async function () {
-  const selectedTherapiesOptions = formEl["therapies"].selectedOptions;
   const slots = { employeeId: formEl["employeeId"].value,
     firstName: formEl["firstName"].value,
     lastName: formEl["lastName"].value,
@@ -84,7 +83,7 @@ createButton.addEventListener("click", async function () {
   formEl["therapies"][0].setCustomValidity( Employee.checkTherapySkills( slots.therapySkills).message);
 
   if (formEl.checkValidity()) {
-    Employee.add( slots);
+    await Employee.add( slots);
     formEl.reset();
   }
   hideProgressBar( progressEl);
