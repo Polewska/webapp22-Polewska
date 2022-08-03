@@ -18,8 +18,7 @@ import {
 } from "../../lib/errorTypes.mjs";
 import { isIntegerOrIntegerString, isNonEmptyString, date2IsoDateString, isDateOrDateString } from "../../lib/util.mjs";
 import Enumeration from "../../lib/Enumeration.mjs";
-import {FieldValue} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
-import resort from "./Resort.mjs";
+import {FieldPath} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
 import Resort from "./Resort.mjs";
 
 /**
@@ -334,12 +333,15 @@ Employee.retrieveBlock = async function (params) {
     let employeesCollRef = fsColl( fsDb, "employees");
     // set limit and order in query
     employeesCollRef = fsQuery( employeesCollRef, limit( 21));
-    if (params.order) employeesCollRef = fsQuery( employeesCollRef, orderBy( params.order));
+    if (params.order) {
+      employeesCollRef = fsQuery( employeesCollRef, orderBy( params.order));
+    }
     // set pagination "startAt" cursor
     if (params.cursor) {
        employeesCollRef = fsQuery( employeesCollRef, startAt( params.cursor));
     }
-    const employeeRecs = (await getDocs( employeesCollRef.withConverter( Employee.converter))).docs.map(d => d.data());
+    const employeeRecs = (await getDocs( employeesCollRef
+        .withConverter( Employee.converter))).docs.map(d => d.data());
     if (employeeRecs.length) {
       console.log(`Block of employee records retrieved! (cursor: ${employeeRecs[0][params.order]})`);
     }
@@ -417,46 +419,48 @@ Employee.update = async function ({employeeId, firstName, lastName, birthdate, g
       // update employee (source) object
       updateDoc( employeeDocRef, updatedSlots);
 
-      if(updatedSlots.therapySkills) {
+      if(updatedSlots.therapySkills) { // therapySkills have been updated
 
-          validationResult = await Resort.checkTherapistIdRef(employeeId);
           if (validationResult instanceof NoConstraintViolation) {
 
             const resortsCollRef = fsColl( fsDb, "resorts");
-            const q = fsQuery( resortsCollRef, where("therapistIdRefs", "array-contains", parseInt(employeeId)))
-            const resortsQrySnsTherapists = (await getDocs( q));
+            // query for resorts who reference this employee as therapist -> they are affected by updates to this employee's therapySkills
+            const q = fsQuery( resortsCollRef, where("therapistIdRefs", "array-contains", parseInt(employeeId)));
+            const resortsQrySns = (await getDocs( q));
 
-            let resortIdRefsArray = [];
-            await Promise.all( resortsQrySnsTherapists.docs.map( d => {
-             // const resortDocRef = fsDoc(resortsCollRef, d.id);
-              resortIdRefsArray.push(d.id);
-            }));
+            if(updatedSlots.therapySkills.length === 0) { // if after update, this employee has no more therapySkills => cannot be therapist in a resort
+              // -> delete the therapist reference to this employee from all resorts where he is therapist:
+              const batch = writeBatch( fsDb);
+              await Promise.all( resortsQrySns.docs.map( d => {
+                const resortDocRef = fsDoc(resortsCollRef, d.id);
+                batch.update(resortDocRef, {
+                  therapistIdRefs: arrayRemove(parseInt(employeeId))
+                });
+              }));
+              batch.commit(); // commit batch write
+            } // any updates on therapistIdRefs need to be committed before deriving available rehas from them
 
-            for(const resid of resortIdRefsArray) {
-              const resortDocRefRehas = fsDoc( fsDb, "resorts", resid)
+            // now derive availableRehas again for all resorts referencing the updated employee as therapist
+            // 2 cases:
+            // case 1: after update of therapySkills, the employee has no more therapySkills -> got removed as therapist due to lack of any therapySkills after update
+            //    -> this can affect (reduce) available rehas for resorts referencing this employee as therapist (if no other therapist has the skills that this therapist previously had)
+            // case 2: employee's therapySkills change, but he is still qualified as therapist (at least 1 therapySkill)
+            //     -> therapistIdRefs for resorts referencing this employee as therapist remain unchanged but their available rehas might change
+            const batchUpdateAvailableRehas = writeBatch( fsDb);
+
+            for (const resortDoc of resortsQrySns.docs) {
+              const resortDocRefRehas = fsDoc( fsDb, "resorts", resortDoc.id)
                   .withConverter( Resort.converter);
               const resortRec = (await getDoc(resortDocRefRehas)).data();
               const rehasArray = await Resort.deriveAvailableRehas(resortRec.therapistIdRefs);
               const slots = {
                 availableRehas: rehasArray
               };
-              updateDoc( resortDocRefRehas, slots);
+              batchUpdateAvailableRehas.update(resortDocRefRehas, slots);
             }
-
-            /*for(const resid of resortIdRefsArray) {
-              const resortDocRefRehas = fsDoc( fsDb, "resorts", resid)
-                  .withConverter( Resort.converter);
-              const resortRec = (await getDoc(resortDocRefRehas)).data();
-              const rehasArray = await Resort.deriveAvailableRehas(resortRec.therapistIdRefs);
-              const slots = {
-                availableRehas: rehasArray
-              };
-              updateDoc( resortDocRefRehas, slots);
-            }*/
-
+            batchUpdateAvailableRehas.commit(); // commit batch write
           }
       }
-
     } catch (e) {
       console.error(`${e.constructor.name}: ${e.message}`);
     }
@@ -476,8 +480,7 @@ Employee.destroy = async function (employeeId) {
   const employeesCollRef = fsColl( fsDb, "employees");
 
   try {
-    const employeeRef = {id: employeeId},
-        q = fsQuery( resortsCollRef, where("therapistIdRefs", "array-contains", parseInt(employeeId))),
+    const q = fsQuery( resortsCollRef, where("therapistIdRefs", "array-contains", parseInt(employeeId))),
         q2 = fsQuery( resortsCollRef, where("manager_id", "==", String(employeeId))),
         employeeDocRef = fsDoc( employeesCollRef, String( employeeId)),
         resortsQrySnsTherapists = (await getDocs( q)),
@@ -485,7 +488,7 @@ Employee.destroy = async function (employeeId) {
         batch = writeBatch( fsDb); // initiate batch write
 
     let resortIdRefsArray = [];
-    // iterate and delete associations in resort records
+    // iterate and delete associations (references) in resort records
     await Promise.all( resortsQrySnsTherapists.docs.map( d => {
       const resortDocRef = fsDoc(resortsCollRef, d.id);
       resortIdRefsArray.push(d.id);
@@ -499,10 +502,10 @@ Employee.destroy = async function (employeeId) {
       resortIdRefsArray = resortIdRefsArray.filter(resort => String(resort) !== d.id);
       batch.delete(resortDocRef);
     }));
-
     batch.delete( employeeDocRef); // delete employee record
     batch.commit(); // commit batch write
 
+    const batchDeriveRehas = writeBatch( fsDb);
     for(const resid of resortIdRefsArray) {
       const resortDocRefRehas = fsDoc( fsDb, "resorts", resid)
           .withConverter( Resort.converter);
@@ -511,8 +514,10 @@ Employee.destroy = async function (employeeId) {
       const slots = {
         availableRehas: rehasArray
       };
-      updateDoc( resortDocRefRehas, slots);
+      batchDeriveRehas.update(resortDocRefRehas, slots);
+      //updateDoc( resortDocRefRehas, slots);
     }
+    batchDeriveRehas.commit(); // commit batch write
 
     console.log(`Employee record ${employeeId} deleted!`);
   } catch (e) {

@@ -154,19 +154,30 @@ createChoiceWidget( therapiesFieldsetElCreate, "therapies", [],
 
 
 // set up event handlers for responsive constraint validation
-createFormEl["employeeId"].addEventListener("input", async function () {
-  const responseValidation = await Employee.checkEmployeeIdAsId( createFormEl["employeeId"].value);
-  createFormEl["employeeId"].setCustomValidity( responseValidation.message);
+
+createFormEl["employeeId"].addEventListener("input", function() {
+  this.setCustomValidity(Employee.checkEmployeeId(this.value).message);
+  createFormEl["employeeId"].reportValidity();
 });
 
 createFormEl["firstName"].addEventListener("input", function () {
   this.setCustomValidity(Employee.checkFirstName( this.value).message);
+  createFormEl["firstName"].reportValidity();
 });
 createFormEl["lastName"].addEventListener("input", function () {
   this.setCustomValidity(Employee.checkLastName( this.value).message);
+  createFormEl["lastName"].reportValidity();
 });
 createFormEl["birthdate"].addEventListener("input", function () {
   this.setCustomValidity(Employee.checkBirthdate( this.value).message);
+  createFormEl["birthdate"].reportValidity();
+});
+
+// mandatory value check for radio button group 'gender'
+genderFieldsetElCreate.addEventListener("click", function () {
+  createFormEl["gender"][0].setCustomValidity(
+      (!genderFieldsetElCreate.getAttribute("data-value")) ?
+          "A gender must be selected!":"" );
 });
 
 // handle Create button click events
@@ -177,8 +188,8 @@ createFormEl["commit"].addEventListener("click", async function () {
     firstName: createFormEl["firstName"].value,
     lastName: createFormEl["lastName"].value,
     birthdate: createFormEl["birthdate"].value,
-    gender: createFormEl["gender"].value,
-    therapySkills: [],
+    gender: genderFieldsetElCreate.getAttribute("data-value"),
+    therapySkills: JSON.parse( therapiesFieldsetElCreate.getAttribute("data-value"))
   };
   // check all input fields and show error messages
   createFormEl["employeeId"].setCustomValidity(
@@ -195,7 +206,9 @@ createFormEl["commit"].addEventListener("click", async function () {
 
   // set the error message for gender constraint violations on the first radio button
   // validation of gender only on commit because no invalid input possible through UI
-  createFormEl["gender"][0].setCustomValidity( Employee.checkGender( slots.gender).message);
+  createFormEl["gender"][0].setCustomValidity(
+      (!genderFieldsetElCreate.getAttribute("data-value")) ?
+          "A gender must be selected!":"" );
   createFormEl["gender"][0].reportValidity();
 
   // set the error message for therapySkills constraint violations on the first checkbox
@@ -344,19 +357,22 @@ document.getElementById("Delete").addEventListener("click", async function () {
 deleteFormEl["employeeId"].addEventListener("input", async function () {
   const responseValidation = await Employee.checkEmployeeIdAsIdRef( deleteFormEl["employeeId"].value);
   deleteFormEl["employeeId"].setCustomValidity( responseValidation.message);
+  deleteFormEl["employeeId"].reportValidity();
 });
-// commit delete only if all form field values are valid
-if (deleteFormEl.checkValidity()) {
+
   // handle Delete button click events
   deleteFormEl["commit"].addEventListener("click", async function () {
-    const employeeIdRef = deleteFormEl["employeeId"].value;
-    if (!employeeIdRef) return;
-    if (confirm("Do you really want to delete this employee?")) {
-      await Employee.destroy(employeeIdRef);
-      deleteFormEl.reset();
+    // commit delete only if all form field values are valid
+    if (deleteFormEl.checkValidity()) {
+      const employeeIdRef = deleteFormEl["employeeId"].value;
+      if (!employeeIdRef) return;
+      if (confirm("Do you really want to delete this employee?")) {
+        await Employee.destroy(employeeIdRef);
+        deleteFormEl.reset();
+      }
     }
   });
-}
+
 
 /**********************************************
  * Refresh the Manage Employees Data UI

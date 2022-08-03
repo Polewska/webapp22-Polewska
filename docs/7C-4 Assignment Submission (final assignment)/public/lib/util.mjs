@@ -186,7 +186,8 @@ async function createMultiSelectionWidget (formEl, idRefs, inputEl,
     const listEl = widgetEl.children[1]; // ul
     const idReference = formEl[inputEl].value;
     // if new ID reference is not empty or zero
-    if (idReference && parseInt(idReference) !== 0) {
+    //if (idReference && parseInt(idReference) !== 0) {
+    if (idReference) {
       let responseValidation = await checkerMethod( idReference); // invoke checker
       if (responseValidation.message) {
         formEl[inputEl].setCustomValidity( responseValidation.message);
@@ -422,9 +423,9 @@ function createChoiceWidget( containerEl, fld, values,
     containerEl.setAttribute("data-bind", fld);
   }
   // for a mandatory radio button group initialze to first value
-  if (choiceWidgetType === "radio" && isMandatory && values.length === 0) {
-    values[0] = 1;
-  }
+  //if (choiceWidgetType === "radio" && isMandatory && values.length === 0) {
+  //  values[0] = 1;
+ // }
   if (values.length >= 1) {
     if (choiceWidgetType === "radio") {
       containerEl.setAttribute("data-value", values[0]);
@@ -438,6 +439,7 @@ function createChoiceWidget( containerEl, fld, values,
         j+1, choiceItems[j]);
     // mark the radio button or checkbox as selected/checked
     if (values.includes(j+1)) el.firstElementChild.checked = true;
+
     containerEl.appendChild( el);
     el.firstElementChild.addEventListener("click", function (e) {
       const btnEl = e.target;

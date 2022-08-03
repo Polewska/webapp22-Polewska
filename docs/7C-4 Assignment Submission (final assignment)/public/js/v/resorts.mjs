@@ -156,13 +156,21 @@ document.getElementById("Create").addEventListener("click", async function () {
   resortMSectionEl.hidden = true;
   resortCSectionEl.hidden = false;
 });
+
+createFormEl["resortId"].addEventListener("input", function() {
+  this.setCustomValidity(Resort.checkResortId(this.value).message);
+  createFormEl["resortId"].reportValidity();
+});
+
 // set up event handlers for responsive constraint validation
 createFormEl["city"].addEventListener("input", function () {
   this.setCustomValidity(Resort.checkCity( this.value).message);
+  createFormEl["city"].reportValidity();
 });
 
 createFormEl["manager"].addEventListener("input", function () {
   this.setCustomValidity(Resort.checkManagerId( this.value).message);
+  createFormEl["manager"].reportValidity();
 });
 
 // handle Create button click events
@@ -179,11 +187,14 @@ createFormEl["commit"].addEventListener("click", async function () {
   // check all input fields and show error messages
   createFormEl["resortId"].setCustomValidity(
     (await Resort.checkResortIdAsId( slots.resortId)).message);
+  createFormEl["resortId"].reportValidity();
 
   createFormEl["city"].setCustomValidity( Resort.checkCity( slots.city).message);
+  createFormEl["city"].reportValidity();
 
   const responseValidation = await Resort.checkManagerIdAsIdRef( slots.manager_id);
   createFormEl["manager"].setCustomValidity( responseValidation.message);
+  createFormEl["manager"].reportValidity();
 
   let availRehas = [];
   if (addedTherapistsListEl.children.length) {
@@ -192,6 +203,7 @@ createFormEl["commit"].addEventListener("click", async function () {
       const responseValidation = await Employee.checkEmployeeIdAsIdRef(therapist.id);
       if (responseValidation.message) {
         createFormEl["therapists"].setCustomValidity(responseValidation.message);
+        createFormEl["therapists"].reportValidity();
         break;
       } else {
         slots.therapistIdRefs.push(parseInt(therapist.id));
@@ -337,19 +349,22 @@ document.getElementById("Delete").addEventListener("click", async function () {
 deleteFormEl["resortId"].addEventListener("input", async function () {
   const responseValidation = await Resort.checkResortIdAsIdRef( deleteFormEl["resortId"].value);
   deleteFormEl["resortId"].setCustomValidity( responseValidation.message);
+  deleteFormEl["resortId"].reportValidity();
 });
-// commit delete only if all form field values are valid
-if (deleteFormEl.checkValidity()) {
+
   // handle Delete button click events
   deleteFormEl["commit"].addEventListener("click", async function () {
-    const resortIdRef = deleteFormEl["resortId"].value;
-    if (!resortIdRef) return;
-    if (confirm("Do you really want to delete this resort?")) {
-      await Resort.destroy(resortIdRef);
-      deleteFormEl.reset();
+    // commit delete only if all form field values are valid
+    if (deleteFormEl.checkValidity()) {
+      const resortIdRef = deleteFormEl["resortId"].value;
+      if (!resortIdRef) return;
+      if (confirm("Do you really want to delete this resort?")) {
+        await Resort.destroy(resortIdRef);
+        deleteFormEl.reset();
+      }
     }
   });
-}
+
 
 /**********************************************
  * Refresh the Manage Resort Data UI
