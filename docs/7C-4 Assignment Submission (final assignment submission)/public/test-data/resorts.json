@@ -1,0 +1,264 @@
+[
+  {
+    "resortId": "1",
+    "city": "Hooksiel",
+    "manager_id": "1",
+    "therapistIdRefs": [
+      2
+    ]
+  },
+  {
+    "resortId": "2",
+    "city": "Gohren",
+    "manager_id": "2",
+    "therapistIdRefs": [
+      1
+    ]
+  },
+  {
+    "resortId": "4",
+    "city": "Oslo",
+    "manager_id": "2",
+    "therapistIdRefs": []
+  },
+  {
+    "resortId": "3",
+    "city": "Bansin",
+    "manager_id": "3",
+    "therapistIdRefs": [
+      1,2
+    ]
+  },
+  {
+    "resortId": "5",
+    "city": "Hamburg",
+    "manager_id": "1",
+    "therapistIdRefs": [
+      10,2
+    ]
+  },
+  {
+    "resortId": "6",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      1,2,6,8
+    ]
+  },
+  {
+    "resortId": "7",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      1,2,6,8
+    ]
+  },
+  {
+    "resortId": "8",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      1,2,6,8
+    ]
+  },
+  {
+    "resortId": "9",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "10",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "11",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "12",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "13",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "14",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "15",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "16",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "17",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "18",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "19",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "20",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "21",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "22",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "23",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "24",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "25",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "26",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "27",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "28",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "29",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "30",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "31",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "32",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  },
+  {
+    "resortId": "33",
+    "city": "Warschau",
+    "manager_id": "6",
+    "therapistIdRefs": [
+      8,9
+    ]
+  }
+]

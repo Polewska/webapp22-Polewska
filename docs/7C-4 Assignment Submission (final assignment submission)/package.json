@@ -1,0 +1,38 @@
+{
+  "name": "js-firebase-unidir-assoc",
+  "version": "1.1.0",
+  "description": "Part 4: Learn how to build a Web App with unidirectional associations using JS and Firebase",
+  "homepage": "https://webengineering.netlify.app/js-firebase/unidir-associations-app/",
+  "main": "index.html",
+  "keywords": [
+    "javascript",
+    "firebase",
+    "firestore",
+    "crud",
+    "firebase SDK version 9",
+    "unidirectional associations",
+    "authentication"
+  ],
+  "contributors": [
+    {
+      "name": "Gerd Wagner",
+      "email": "gwagner57@googlemail.com",
+      "url": "https://webengineering.netlify.app/"
+    },
+    {
+      "name": "Juan-Francisco Reyes",
+      "email": "pacoreyesp@gmail.com"
+    }
+  ],
+  "license" : "SEE LICENSE IN https://www.codeproject.com/info/cpol10.aspx",
+  "bugs": {
+    "email" : "gwagner57@googlemail.com"
+  },
+  "dependencies": {
+    "firebase": "^9.8.3",
+    "firebase-auth": "^0.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
